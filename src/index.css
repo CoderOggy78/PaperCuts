@@ -1,0 +1,128 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-serif: "Fraunces", Georgia, Cambria, serif;
+    --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+    /* Editorial Archival Palette */
+    --paper-bg: #fcfbf8;
+    --paper-card: #ffffff;
+    --paper-subtle: #f5f2eb;
+    --paper-border: #e8e3d8;
+    --paper-border-strong: #d4cdbe;
+
+    --ink-primary: #181615;
+    --ink-secondary: #47433e;
+    --ink-muted: #706b63;
+    --ink-faint: #9c968c;
+
+    /* Restrained Accents */
+    --accent-forest: #1b4332;
+    --accent-forest-subtle: #eaf2ec;
+    --accent-cobalt: #1e3a8a;
+    --accent-cobalt-subtle: #e9eefb;
+    --accent-amber: #b45309;
+    --accent-amber-subtle: #fef3c7;
+    --accent-red: #991b1b;
+    --accent-red-subtle: #fee2e2;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--paper-bg);
+    color: var(--ink-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, .font-editorial {
+    font-family: var(--font-serif);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  code, pre, .font-mono {
+    font-family: var(--font-mono);
+  }
+
+  /* Accessible focus indicators */
+  :focus-visible {
+    outline: 2px solid #1b4332;
+    outline-offset: 2px;
+  }
+
+  /* Text selection */
+  ::selection {
+    background-color: #dbeafe;
+    color: #1e3a8a;
+  }
+}
+
+/* Tabular figures for dates, page numbers, counters */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Custom scrollbars that feel like paper edges */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f7f4ed;
+}
+::-webkit-scrollbar-thumb {
+  background: #d8d0c3;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #b5aba0;
+}
+
+/* Highlighting styles for citations */
+.citation-highlight {
+  background-color: #fef08a;
+  border-bottom: 2px solid #ca8a04;
+  padding: 1px 2px;
+  border-radius: 2px;
+  transition: background-color 0.2s ease;
+}
+
+.citation-highlight-active {
+  background-color: #fde047;
+  outline: 2px solid #b45309;
+  box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.25);
+  animation: citationPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes citationPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(245, 158, 11, 0.4);
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Print styling */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+}
